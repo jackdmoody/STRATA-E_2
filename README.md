@@ -14,8 +14,9 @@ STRATA-(E) addresses all four by modeling behavior per-host, per-role, with time
 ---
 
 ## Architectural Overview
+<img width="2500" height="1408" alt="strata_arch" src="https://github.com/user-attachments/assets/80a9719d-a1b1-45ec-9c18-ba4b1c824926" />
 
-<img width="1102" height="1118" alt="strata_layout" src="https://github.com/user-attachments/assets/d21b21ad-4056-4318-bbf0-999a962ac7ef" />
+
 
 *Time-aware, role-aware, multi-channel Sysmon behavioral analytic architecture with Bayesian peer baselines and calibrated sequence divergence. Dirichlet shrinkage stabilizes transition estimation; bootstrap calibration yields statistical significance for JSD-based sequence anomalies. A parallel validation framework supports attack injection, ablation, calibration checks, and stability analysis.*
 
