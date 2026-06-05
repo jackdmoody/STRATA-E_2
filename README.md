@@ -121,7 +121,7 @@ STRATA-(E) has been validated on two independent networks from a military cyber 
 | Time span | 14 days | 14 days |
 | Roles inferred | 11 | 5 |
 | Gate pass (triage leads) | 12 (79% filtered) | 7 (75% filtered) |
-| Runtime (fast mode) | 19 min | ~10 min (sampled) |
+| Runtime (fast mode) | 19 min | ~10 min |
 | Top finding | Selenium automation platform (567 unique processes) | GHOSTS NPC simulation + ICS HMI application |
 
 ### Key findings
