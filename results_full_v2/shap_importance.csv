@@ -1,0 +1,10 @@
+feature,mean_abs_shap,rank
+event_count,0.6824153069988503,1
+unique_parents,0.5514552332160648,2
+proc_rate_total,0.3409546824756044,3
+hours,0.24294431182960965,4
+script_rate,0.0,5
+office_rate,0.0,6
+lolbin_rate,0.0,7
+browser_rate,0.0,8
+unique_users,0.0,9

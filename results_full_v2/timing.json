@@ -1,0 +1,10 @@
+{
+  "fit_seconds": 423.46261570000206,
+  "score_seconds": 1532.906363099988,
+  "total_seconds": 2424.900686100009,
+  "n_hosts_scored": 28,
+  "n_events_scored": 18970483,
+  "hosts_per_second": 0.018265955882246946,
+  "events_per_second": 12375.500197961275,
+  "ms_per_host": 54746.65582499957
+}

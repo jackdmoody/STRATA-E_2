@@ -1,0 +1,12 @@
+{
+  "fleet_size": 10000,
+  "attack_prevalence": 0.001,
+  "expected_compromised": 10.0,
+  "fpr": 0.0,
+  "recall": 1.0,
+  "expected_true_positives": 10.0,
+  "expected_false_positives": 0.0,
+  "expected_alerts_per_run": 10.0,
+  "deployment_ppv": 1.0,
+  "detection_lift_vs_random": 100.0
+}
