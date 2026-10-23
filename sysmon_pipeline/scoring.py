@@ -74,7 +74,13 @@ def score_frequency(df_rates: pd.DataFrame, model: IsolationForest) -> pd.DataFr
     normality = model.decision_function(X)
     ranks = pd.Series(normality).rank(pct=True)
     S_freq = 1.0 - ranks.to_numpy()
-    return pd.DataFrame({"host": df_rates["host"].values, "S_freq": S_freq})
+    # S_freq is a WITHIN-BATCH rank. S_freq_raw (= -decision_function, higher =
+    # more anomalous) is the batch-independent score used by calibrated.py.
+    return pd.DataFrame({
+        "host": df_rates["host"].values,
+        "S_freq": S_freq,
+        "S_freq_raw": -np.asarray(normality, dtype=float),
+    })
 
 
 # ---------------------------------------------------------------------------
@@ -379,6 +385,12 @@ def score_context(
         "severity_max":    g["severity_max"].values,
         "n_pairs":         g["n_pairs"].values,
         "cmdline_novelty": g["cmdline_novelty"].values,
+        # Raw (pre peer-scoring) components, exposed so calibrated.py can
+        # re-score them against FROZEN role medians/MADs instead of the
+        # within-batch ones used for S_ctx above.
+        "ctx_flag_rate":   g["flag_rate"].values,
+        "ctx_pair_rate":   g["pair_rate"].values,
+        "ctx_n_tactics":   g["n_tactics"].values,
     })
 
 

@@ -66,6 +66,9 @@ class StrataArtifacts:
     triage: Optional[pd.DataFrame] = None
     calibration_report: Optional[dict] = None
     stage_timings: Optional[Dict[str, float]] = None
+    # Track C: per-host calibrated p-values / gate, present only when score()
+    # is called with a fitted calibrated.CalibratedScorer.
+    calibrated: Optional[pd.DataFrame] = None
 
 
 @dataclass
@@ -296,9 +299,15 @@ class StrataPipeline:
         fitted: FittedArtifacts,
         prior_window_df: Optional[pd.DataFrame] = None,
         learned_weights: Optional[np.ndarray] = None,
+        calibrator: Optional[object] = None,
     ) -> StrataArtifacts:
         """
         Score a new window of events against fitted baselines.
+
+        calibrator: optional calibrated.CalibratedScorer. When given, the
+                    returned artifacts also carry `.calibrated` (batch-
+                    independent p-values, fused p-value, fixed-threshold gate).
+                    Rank-mode outputs are identical with or without it.
 
         prior_window_df: optional previous window for drift channel computation.
         learned_weights: optional weights from learn_fusion_weights() — if provided,
@@ -495,7 +504,7 @@ class StrataPipeline:
             pct = 100.0 * elapsed / (total + 1e-9)
             logger.info("  %-25s %6.2fs  (%4.1f%%)", stage, elapsed, pct)
 
-        return StrataArtifacts(
+        art = StrataArtifacts(
             events=events,
             host_roles=fitted.host_roles,
             peer_baselines=fitted.peer_baselines,
@@ -511,6 +520,9 @@ class StrataPipeline:
             triage=triage,
             stage_timings=timings,
         )
+        if calibrator is not None:
+            art.calibrated = calibrator.transform(art)
+        return art
 
     # ------------------------------------------------------------------
     # Convenience: fit + score in one call (for notebooks / quick runs)

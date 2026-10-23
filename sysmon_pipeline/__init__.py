@@ -57,6 +57,7 @@ from .config import (
 from .pipeline import StrataPipeline, StrataArtifacts, FittedArtifacts
 from .loaders import load_darpa_tc, load_sysmon, load_sysmon_csv, split_time_windows
 from .report import ReportContext
+from .calibrated import CalibratedScorer
 
 __version__ = "1.0.0"
 
@@ -66,6 +67,7 @@ __all__ = [
     "StrataArtifacts",
     "FittedArtifacts",
     "ReportContext",
+    "CalibratedScorer",
     # Config
     "StrataConfig",
     "AblationConfig",
